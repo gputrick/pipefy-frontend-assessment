@@ -1,8 +1,8 @@
-import { gql, useQuery } from "@apollo/client";
-import { CircularProgress, Typography } from "@mui/material";
-import { Box } from "@mui/system";
-import { Organization } from "../types";
-import { PipeItem } from "./PipeItem";
+import { gql, useQuery } from "@apollo/client"
+import { CircularProgress, Typography } from "@mui/material"
+import { Box } from "@mui/system"
+import { Organization } from "../types"
+import { PipeItem } from "./PipeItem"
 
 const PIPES_QUERY = gql`
   {
@@ -17,16 +17,16 @@ const PIPES_QUERY = gql`
       }
     }
   }
-`;
+`
 
 type PipesQueryResult = {
-  organization: Organization;
-};
+  organization: Organization
+}
 
 export function PipeList() {
-  const { data, loading } = useQuery<PipesQueryResult>(PIPES_QUERY);
+  const { data, loading } = useQuery<PipesQueryResult>(PIPES_QUERY)
 
-  console.log(data);
+  console.log(data)
 
   return (
     <>
@@ -45,5 +45,5 @@ export function PipeList() {
         </Box>
       )}
     </>
-  );
+  )
 }
