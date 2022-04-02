@@ -1,10 +1,9 @@
 import { Card, CardContent, styled, Typography } from "@mui/material"
 import { Box } from "@mui/system"
 import { Pipe } from "../types"
-import * as colors from "@mui/material/colors"
 
 const PipeCard = styled(Card)<{ color: string }>(({ theme, color }) => ({
-  backgroundColor: colors.yellow[200],
+  backgroundColor: color,
   width: 300,
   minHeight: 132,
 }))
