@@ -1,7 +1,9 @@
 import { gql, useQuery } from "@apollo/client"
-import { CircularProgress, Typography } from "@mui/material"
+import { Alert, CircularProgress, Typography } from "@mui/material"
 import { Box } from "@mui/system"
+import { useMemo } from "react"
 import { Organization } from "../types"
+import { sortPipes } from "../utils/sortPipes"
 import { PipeItem } from "./PipeItem"
 
 const PIPES_QUERY = gql`
@@ -24,26 +26,29 @@ type PipesQueryResult = {
 }
 
 export function PipeList() {
-  const { data, loading } = useQuery<PipesQueryResult>(PIPES_QUERY)
+  const { data, loading, error } = useQuery<PipesQueryResult>(PIPES_QUERY)
 
-  console.log(data)
+  const sortedPipes = useMemo(
+    () => sortPipes(data?.organization?.pipes),
+    [data]
+  )
+
+  if (loading) return <CircularProgress />
+
+  if (error)
+    return (
+      <Alert severity="error">
+        An error has occurrend, was not possible to get your pipes.
+      </Alert>
+    )
 
   return (
-    <>
-      <Typography variant="h6" sx={{ mb: 1 }}>
-        Your pipes
-      </Typography>
-      {loading ? (
-        <CircularProgress />
-      ) : (
-        <Box component="section" display="flex" flexWrap="wrap">
-          {data?.organization.pipes.map((pipe) => (
-            <Box key={pipe.id} component="article" mr={2} mb={2}>
-              <PipeItem {...pipe} />
-            </Box>
-          ))}
+    <Box component="section" display="flex" flexWrap="wrap">
+      {sortedPipes.map((pipe) => (
+        <Box key={pipe.id} component="article" mr={2} mb={2}>
+          <PipeItem {...pipe} />
         </Box>
-      )}
-    </>
+      ))}
+    </Box>
   )
 }
