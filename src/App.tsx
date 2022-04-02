@@ -1,17 +1,19 @@
-import React from 'react';
-import './App.css';
+import { styled } from "@mui/material";
+import React from "react";
+import { PipeList } from "./features/pipes/components/PipeList";
+
+const MainContent = styled("main")`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: ${({ theme }) => theme.spacing(8)}} {
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img
-          src="https://files.readme.io/9e810f9-small-developers3x.png"
-          className="App-logo"
-          alt="logo"
-        />
-      </header>
-    </div>
+    <MainContent>
+      <PipeList />
+    </MainContent>
   );
 }
 
