@@ -48,6 +48,8 @@ export function PipeList() {
       </Alert>
     )
 
+  if (sortedPipes.length === 0)
+    return <Alert severity="info">Your pipes list is empty.</Alert>
   return (
     <Box component="section" display="flex" flexWrap="wrap">
       {sortedPipes.map((pipe) => (

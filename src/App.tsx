@@ -1,6 +1,5 @@
 import { styled, Typography } from "@mui/material"
-import React from "react"
-import { PipeList } from "./features/pipes/components/PipeList"
+import { PipeList } from "./features/pipes"
 
 const MainContent = styled("main")`
   height: 100vh;

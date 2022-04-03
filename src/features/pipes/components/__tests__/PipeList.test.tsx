@@ -24,6 +24,24 @@ const successMock = [
   },
 ]
 
+const successMockEmpty = [
+  {
+    request: {
+      query: PIPES_QUERY,
+      variables: {
+        organizationId: process.env.REACT_APP_ORGANIZATION_ID,
+      },
+    },
+    result: {
+      data: {
+        organization: {
+          pipes: [],
+        },
+      },
+    },
+  },
+]
+
 const errorMock = [
   {
     request: {
@@ -37,24 +55,40 @@ const errorMock = [
 ]
 
 describe("PipeList component", () => {
-  it("should render with right data", async () => {
-    const { findAllByTestId } = render(
-      <MockedProvider mocks={successMock}>
-        <PipeList />
-      </MockedProvider>
-    )
+  describe("given a success response with data", () => {
+    it("should render with right data", async () => {
+      const { findAllByTestId } = render(
+        <MockedProvider mocks={successMock}>
+          <PipeList />
+        </MockedProvider>
+      )
 
-    expect(await findAllByTestId("pipe-card")).toHaveLength(3)
+      expect(await findAllByTestId("pipe-card")).toHaveLength(3)
+    })
   })
 
-  it("should render loading", () => {
-    const { getByLabelText } = render(
-      <MockedProvider mocks={[]}>
-        <PipeList />
-      </MockedProvider>
-    )
+  describe("given a success response with an empty list", () => {
+    it("should render the empty list message", async () => {
+      const { findByText } = render(
+        <MockedProvider mocks={successMockEmpty}>
+          <PipeList />
+        </MockedProvider>
+      )
 
-    expect(getByLabelText("Loading pipes")).toBeInTheDocument()
+      expect(await findByText("Your pipes list is empty.")).toBeInTheDocument()
+    })
+  })
+
+  describe("given the loading response state", () => {
+    it("should render loading", () => {
+      const { getByLabelText } = render(
+        <MockedProvider mocks={[]}>
+          <PipeList />
+        </MockedProvider>
+      )
+
+      expect(getByLabelText("Loading pipes")).toBeInTheDocument()
+    })
   })
 
   it("should render error message", async () => {
