@@ -18,10 +18,14 @@ export function PipeItem({ name, cards_count, color }: Pipe) {
           alignItems="center"
           justifyContent="center"
         >
-          <Typography variant="h6" align="center">
+          <Typography variant="h6" align="center" aria-label="Pipe title">
             {name}
           </Typography>
-          <Typography variant="subtitle1" color="textSecondary">
+          <Typography
+            variant="subtitle1"
+            color="textSecondary"
+            aria-label="Pipe cards count"
+          >
             {`${cards_count} ${cards_count === 1 ? "card" : "cards"}`}
           </Typography>
         </Box>
