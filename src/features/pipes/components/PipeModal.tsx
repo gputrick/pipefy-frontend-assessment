@@ -4,7 +4,6 @@ import {
   Dialog,
   DialogActions,
   DialogTitle,
-  Typography,
 } from "@mui/material"
 import { CardList } from "src/features/cards"
 import { Pipe } from "../types"
@@ -18,9 +17,7 @@ type PipeModalProps = {
 export function PipeModal({ pipe, opened, onClose }: PipeModalProps) {
   return (
     <Dialog open={opened} onClose={onClose} scroll="body" fullWidth>
-      <DialogTitle>
-        <Typography variant="h6">{pipe.name}</Typography>
-      </DialogTitle>
+      <DialogTitle>{pipe.name}</DialogTitle>
       <CardContent>
         <CardList pipeId={pipe.id} cards_count={pipe.cards_count} />
       </CardContent>

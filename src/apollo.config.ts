@@ -1,18 +1,14 @@
-import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloClient, InMemoryCache } from "@apollo/client"
+import { cardFields } from "./features/cards"
 
 const cache = new InMemoryCache({
   typePolicies: {
     Query: {
       fields: {
-        GetPipeCards: {
-          keyArgs: false,
-          merge(existing = [], incoming) {
-            return [...existing, ...incoming];
-          },
-        }
-      }
-    }
-  }
+        ...cardFields,
+      },
+    },
+  },
 })
 
 export const client = new ApolloClient({

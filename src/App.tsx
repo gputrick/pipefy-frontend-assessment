@@ -1,21 +1,17 @@
-import { styled, Typography } from "@mui/material"
-import { PipeList } from "./features/pipes"
+import { ApolloProvider } from "@apollo/client"
+import { PropsWithChildren } from "react"
+import { client } from "./apollo.config"
+import Home from "./pages/Home"
 
-const MainContent = styled("main")`
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  padding: ${({ theme }) => theme.spacing(8)}}
-`
+const Providers = ({ children }: PropsWithChildren<{}>) => {
+  return <ApolloProvider client={client}>{children}</ApolloProvider>
+}
 
 function App() {
   return (
-    <MainContent>
-      <Typography variant="h6" sx={{ mb: 1 }}>
-        Your pipes
-      </Typography>
-      <PipeList />
-    </MainContent>
+    <Providers>
+      <Home />
+    </Providers>
   )
 }
 

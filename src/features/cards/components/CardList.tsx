@@ -69,25 +69,16 @@ export function CardList({ pipeId, cards_count }: CardListProps) {
     allCards: { edges, pageInfo },
   } = data
 
-  const handleFetchMore = () => {
+  const handleFetchMore = async () => {
     setLoadingMore(true)
 
-    fetchMore<CardQueryResult, CardQueryVars>({
+    await fetchMore<CardQueryResult, CardQueryVars>({
       variables: {
         after: pageInfo.endCursor,
       },
-      updateQuery: (prev, { fetchMoreResult }) => {
-        setLoadingMore(false)
-
-        if (!fetchMoreResult) return prev
-        return {
-          allCards: {
-            edges: [...prev.allCards.edges, ...fetchMoreResult.allCards.edges],
-            pageInfo: fetchMoreResult.allCards.pageInfo,
-          },
-        }
-      },
     })
+
+    setLoadingMore(false)
   }
 
   return (
