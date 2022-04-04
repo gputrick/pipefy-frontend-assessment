@@ -36,14 +36,15 @@ export const PipeItem = memo((pipe: Pipe) => {
               flexDirection="column"
               alignItems="center"
               justifyContent="center"
+              component="header"
             >
-              <Typography variant="h6" align="center" aria-label="Pipe title">
+              <Typography variant="h6" component="h2" align="center">
                 {pipe.name}
               </Typography>
               <Typography
                 variant="subtitle1"
+                component="p"
                 color="textSecondary"
-                aria-label="Pipe cards count"
               >
                 {`${pipe.cards_count} ${
                   pipe.cards_count === 1 ? "card" : "cards"

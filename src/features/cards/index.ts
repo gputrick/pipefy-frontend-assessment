@@ -1,1 +1,1 @@
-export * from "./components/CardModal"
+export * from "./components/CardList"

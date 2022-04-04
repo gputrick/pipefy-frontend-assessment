@@ -41,17 +41,24 @@ export function PipeList() {
 
   if (loading) return <CircularProgress aria-label="Loading pipes" />
 
-  if (error)
+  if (error) {
+    console.error(error)
     return (
       <Alert severity="error">
         An error has occurrend, was not possible to get your pipes.
       </Alert>
     )
+  }
 
   if (sortedPipes.length === 0)
     return <Alert severity="info">Your pipes list is empty.</Alert>
   return (
-    <Box component="section" display="flex" flexWrap="wrap">
+    <Box
+      component="section"
+      aria-label="your pipes"
+      display="flex"
+      flexWrap="wrap"
+    >
       {sortedPipes.map((pipe) => (
         <Box
           key={pipe.id}
