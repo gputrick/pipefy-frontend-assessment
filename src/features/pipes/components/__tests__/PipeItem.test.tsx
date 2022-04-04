@@ -11,11 +11,9 @@ describe("PipeItem component", () => {
       color: "yellow",
     }
 
-    const { getByLabelText } = render(<PipeItem {...pipe} />)
+    const { getByText } = render(<PipeItem {...pipe} />)
 
-    expect(getByLabelText("Pipe title")).toHaveTextContent(pipe.name)
-    expect(getByLabelText("Pipe cards count")).toHaveTextContent(
-      pipe.cards_count.toString()
-    )
+    expect(getByText(pipe.name)).toBeInTheDocument()
+    expect(getByText(`${pipe.cards_count} card`)).toBeInTheDocument()
   })
 })

@@ -1,17 +1,9 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client"
+import { ApolloProvider } from "@apollo/client"
 import App from "./App"
 import reportWebVitals from "./reportWebVitals"
-
-const client = new ApolloClient({
-  uri: process.env.REACT_APP_PIPEFY_API_URL || "",
-  cache: new InMemoryCache(),
-  headers: {
-    authorization: `Bearer ${process.env.REACT_APP_PIPEFY_API_TOKEN || ""}`,
-  },
-  credentials: "same-origin",
-})
+import {client } from "./cache.config"
 
 ReactDOM.render(
   <React.StrictMode>
