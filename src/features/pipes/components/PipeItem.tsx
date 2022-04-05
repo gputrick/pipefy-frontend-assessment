@@ -23,12 +23,11 @@ export const PipeItem = memo((pipe: Pipe) => {
   const handleOpenDialog = () => setDialogOpened(true)
   const handleCloseDialog = () => setDialogOpened(false)
 
-  const materialColor = getMaterialColor(pipe.color)
-  const backgroundColor = materialColor ? materialColor[200] : pipe.color
+  const backgroundColor = getMaterialColor(pipe.color, 200)
 
   return (
     <>
-      <CardActionArea onClick={handleOpenDialog}>
+      <CardActionArea data-testid="open-pipe-dialog" onClick={handleOpenDialog}>
         <PipeCard variant="outlined" bgcolor={backgroundColor}>
           <CardContent>
             <Box

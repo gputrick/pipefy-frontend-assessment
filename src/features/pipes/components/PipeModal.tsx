@@ -16,13 +16,21 @@ type PipeModalProps = {
 
 export function PipeModal({ pipe, opened, onClose }: PipeModalProps) {
   return (
-    <Dialog open={opened} onClose={onClose} scroll="body" fullWidth>
+    <Dialog
+      open={opened}
+      onClose={onClose}
+      scroll="body"
+      data-testid="pipe-dialog"
+      fullWidth
+    >
       <DialogTitle>{pipe.name}</DialogTitle>
       <CardContent>
         <CardList pipeId={pipe.id} cards_count={pipe.cards_count} />
       </CardContent>
       <DialogActions>
-        <Button onClick={onClose}>Close</Button>
+        <Button data-testid="close-dialog" onClick={onClose}>
+          Close
+        </Button>
       </DialogActions>
     </Dialog>
   )
