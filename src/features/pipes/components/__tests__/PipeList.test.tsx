@@ -11,24 +11,23 @@ const commomRequest = {
 
 describe("PipeList component", () => {
   describe("given a success response with data", () => {
-    it("should render with right data", async () => {
-      const successMock = [
-        {
-          request: commomRequest,
-          result: {
-            data: {
-              organization: {
-                pipes: [
-                  { id: "1", name: "Title 1", cards_count: 1, color: "yellow" },
-                  { id: "2", name: "Title 2", cards_count: 1, color: "yellow" },
-                  { id: "3", name: "Title 3", cards_count: 1, color: "yellow" },
-                ],
-              },
+    const successMock = [
+      {
+        request: commomRequest,
+        result: {
+          data: {
+            organization: {
+              pipes: [
+                { id: "1", name: "Title 1", cards_count: 1, color: "yellow" },
+                { id: "2", name: "Title 2", cards_count: 1, color: "yellow" },
+                { id: "3", name: "Title 3", cards_count: 1, color: "yellow" },
+              ],
             },
           },
         },
-      ]
-
+      },
+    ]
+    it("should render with right data", async () => {
       const { findAllByTestId } = render(
         <MockedProvider mocks={successMock}>
           <PipeList />
@@ -40,20 +39,19 @@ describe("PipeList component", () => {
   })
 
   describe("given a success response with an empty list", () => {
-    it("should render the empty list message", async () => {
-      const successMockEmpty = [
-        {
-          request: commomRequest,
-          result: {
-            data: {
-              organization: {
-                pipes: [],
-              },
+    const successMockEmpty = [
+      {
+        request: commomRequest,
+        result: {
+          data: {
+            organization: {
+              pipes: [],
             },
           },
         },
-      ]
-
+      },
+    ]
+    it("should render the empty list message", async () => {
       const { findByText } = render(
         <MockedProvider mocks={successMockEmpty}>
           <PipeList />
@@ -77,14 +75,13 @@ describe("PipeList component", () => {
   })
 
   describe("given the error response state", () => {
+    const errorMock = [
+      {
+        request: commomRequest,
+        error: new Error("Fake error"),
+      },
+    ]
     it("should render error message", async () => {
-      const errorMock = [
-        {
-          request: commomRequest,
-          error: new Error("Fake error"),
-        },
-      ]
-
       const { findByText } = render(
         <MockedProvider mocks={errorMock}>
           <PipeList />

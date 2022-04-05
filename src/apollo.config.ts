@@ -1,7 +1,7 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client"
 import { cardFields } from "./features/cards"
 
-const cache = new InMemoryCache({
+export const cache = new InMemoryCache({
   typePolicies: {
     Query: {
       fields: {

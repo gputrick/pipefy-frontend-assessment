@@ -100,7 +100,7 @@ export function CardList({ pipeId, cards_count }: CardListProps) {
             <CardItem {...node} />
           </Box>
         ))}
-        {loadingMore && <CircularProgress />}
+        {loadingMore && <CircularProgress aria-label="Loading more cards" />}
       </Box>
       <Box display="flex" flexDirection="column" justifyContent="center">
         <Typography variant="subtitle1" color="textSecondary" align="center">
